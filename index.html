@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="./diver.js"></script>
+    <script src="./treasure.js"></script>
+    <script src="./fish.js"></script>
+  </head>
+  <body>
+    <a-scene background="color:#026F90"
+      animation="property: rotation; to: 0 360 0; dur: 10000; easing: linear; loop: true">
+
+      <a-entity id="look" look-controls camera position="0 20 70"></a-entity>
+
+      <a-assets timeout="3000">
+        <a-asset-item id="map" src="./assets/island/scene.gltf"></a-asset-item>
+        <a-asset-item id="diver" src="./assets/diver/scene.gltf"></a-asset-item>
+      </a-assets>
+
+      <a-entity>
+        <a-sphere position="0 -80 0" color="blue" opacity="0.4" radius="100"></a-sphere>
+      </a-entity>
+
+      <a-entity gltf-model="#map" position="0 20 0" scale="1 1 1" id="island" fish treasure></a-entity>
+
+      <!--Scuba Diver-->
+      <a-entity>
+        <a-entity
+          gltf-model="#diver"
+          position="0 15 55"
+          rotation="0 90 -20"
+          scale="0.1 0.1 0.1"
+          diver-rotation
+        ></a-entity>
+        <a-entity
+          id="bubble"
+          position="0 23.5 20"
+          scale="0.1 0.1 0.1"
+          animation="property: position; to: 0 1 0; loop: true; dur: 1000;"
+        ></a-entity>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
